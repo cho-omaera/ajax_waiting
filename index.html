@@ -10,13 +10,14 @@
   <input type="button" id="ajax_button" value="ボタンを押すとテキスト表示">
 
   <div id="result">
-    <img id='loading'>
   </div>
 
   <script>
   $(function() {
     $('#ajax_button').on('click', function() {
-      $('#loading').attr('src', './now_loading.gif');
+      $('#result').prepend('<img src="./images/now_loading.gif" id="loading" style="display:none;">');
+      $('#loading').fadeIn('fast');
+
       setTimeout(function() {
         $.ajax ({
           url: 'for_ajax.html',
