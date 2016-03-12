@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <title>ajaxのテスト</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+</head>
+<body>
+  <h1>ajax test</h1>
+  <input type="button" id="ajax_button" value="ボタンを押すとテキスト表示">
+
+  <div id="result">
+    <img id='loading'>
+  </div>
+
+  <script>
+  $(function() {
+    $('#ajax_button').on('click', function() {
+      $('#loading').attr('src', './now_loading.gif');
+      setTimeout(function() {
+        $.ajax ({
+          url: 'for_ajax.html',
+          timeout: 5000
+        }).done(function(data) {
+          $('#result').html(data);
+          $('#ajax_contents').fadeIn('slow');
+        }).fail(function() {
+          $('#result').html('failed...');
+        });
+      }, 1000);
+    });
+  });
+  </script>
+</body>
